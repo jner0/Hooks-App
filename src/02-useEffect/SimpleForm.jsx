@@ -1,0 +1,37 @@
+import { useState } from "react"
+
+export const SimpleForm = () => {
+
+    const [formState, setformState] = useState({
+
+        username: "ner0",
+        email: "nemecio@google.com"
+    });
+
+    const { username, email } = formState;
+
+    const onInputChange = ( { target } ) => { //desestructuro el target del event
+        //console.log(event.target.value);
+        //desestructuramos el target para obtener el name y value y no llamar targey.name...
+        const { name, value } = target;
+        setformState({
+            //desestructuramos el form state para mantener todos los valores del formulario
+            ...formState,
+            [ name ]: value
+        }); 
+    }
+
+    //UseEffect sirve para disparar efectos secundarios
+    useEffect();
+
+  return (
+    <>
+        <h1>Formulario Simple</h1>
+        <hr />
+
+        <input type="text" className="form-control" placeholder="Username" name="username" value={ username } onChange={onInputChange}/>
+        <input type="email" className="form-control mt-2" placeholder="nemecio@google.com" name="email" value={ email } onChange={ onInputChange }/>
+    </>
+    
+  )
+}
