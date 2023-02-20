@@ -1,4 +1,5 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { Message } from "./Message";
 
 export const SimpleForm = () => {
 
@@ -22,7 +23,20 @@ export const SimpleForm = () => {
     }
 
     //UseEffect sirve para disparar efectos secundarios
-    useEffect();
+    useEffect( () => {
+        //console.log('useEffect called');
+    }, []);
+
+    useEffect( () => {
+        //console.log('formState changed');
+    }, [formState]);
+
+    useEffect( () => {
+        //console.log('email changed');
+    }, [email]);
+
+
+    
 
   return (
     <>
@@ -31,6 +45,11 @@ export const SimpleForm = () => {
 
         <input type="text" className="form-control" placeholder="Username" name="username" value={ username } onChange={onInputChange}/>
         <input type="email" className="form-control mt-2" placeholder="nemecio@google.com" name="email" value={ email } onChange={ onInputChange }/>
+
+        {
+            (username === "ner02") && <Message/>
+        }
+
     </>
     
   )
