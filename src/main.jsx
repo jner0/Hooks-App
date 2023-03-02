@@ -17,8 +17,8 @@ import './08-useReducer/intro-reducer'
 
 import './index.css'
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  //<React.StrictMode>
-    <Padre/>
-  //</React.StrictMode>,
-)
+// ReactDOM.createRoot(document.getElementById('root')).render(
+//   //<React.StrictMode>
+//     <Padre/>
+//   //</React.StrictMode>,
+// )
