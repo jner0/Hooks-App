@@ -6,13 +6,13 @@ import { TodoList } from "./TodoList";
 
 export const TodoApp = () => { 
 
-    const { todos, handleDeleteTodo, handleToggleTodo, handleNewTodo } = useTodos();
+    const { todos, handleDeleteTodo, handleToggleTodo, handleNewTodo, pendingTodosCount, todosCount } = useTodos();
 
     
 
     return (
         <>
-            <h1>TodoApp {todos.length} <small>Pendientes: { todos.filter(todo => !todo.done).length}</small></h1>
+            <h1>TodoApp {todosCount} <small>Pendientes: { pendingTodosCount }</small></h1>
             <hr />
 
             <div className="row">
