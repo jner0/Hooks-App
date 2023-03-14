@@ -1,9 +1,30 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
+import { useCounter } from "../../hooks/useCounter";
+import { useFetch } from "../../hooks/useFetch";
 import { MultipleCustomHook } from "../../src/03-examples";
+
+jest.mock('../../hooks/useFetch');
+jest.mock('../../hooks/useCounter');
 
 describe('Pruebas en MultipleCustomHook', () => { 
 
-    test('debe Mostrar el componente Por defecto', () => { 
+    const mockIncrement = jest.fn();
+    useCounter.mockReturnValue({
+        counter: 1,
+        increment: mockIncrement
+    });
+
+    beforeEach( () => {
+        jest.clearAllMocks();
+    });
+
+    test('debe Mostrar el componente Por defecto', () => {
+        
+        useFetch.mockReturnValue({
+            data: null,
+            isLoading: true,
+            hasError: null
+        });
 
         render(<MultipleCustomHook/>);
 
@@ -13,8 +34,45 @@ describe('Pruebas en MultipleCustomHook', () => {
         const nextButton = screen.getByRole('button', { name: 'Next Quote' });
         expect( nextButton.disabled ).toBeTruthy();
 
-        screen.debug();
+        //screen.debug();
 
      });
+
+     test('Debe de mostrar un Quote', () => { 
+
+        useFetch.mockReturnValue({
+            data: [{ author: 'Nemecio', quote: 'Hola Mundo' }],
+            isLoading: false,
+            hasError: null
+        });
+
+        render(<MultipleCustomHook/>);
+        expect( screen.getByText('Hola Mundo')).toBeTruthy();
+        expect( screen.getByText('Hola Mundo')).toBeTruthy();
+
+        const nextButton = screen.getByRole('button', { name: 'Next Quote' });
+        expect(nextButton.disabled).toBeFalsy();
+
+      });
+
+      test('Debe de llamar la funcion Incremmentar', () => { 
+
+       
+
+        useFetch.mockReturnValue({
+            data: [{ author: 'Nemecio', quote: 'Hola Mundo' }],
+            isLoading: false,
+            hasError: null
+        });
+
+               
+        render(<MultipleCustomHook/>);
+        const nextButton = screen.getByRole('button', { name: 'Next Quote' });
+        fireEvent.click( nextButton );
+
+        expect(mockIncrement).toHaveBeenCalled();
+
+
+       })
 
  });
