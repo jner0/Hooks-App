@@ -8,7 +8,7 @@ export const HomePage = () => {
     return (
       <>
       
-          <h1>Home Page <small>{user?.name}</small> </h1>
+          <h1>HomePage <small>{user?.name}</small> </h1>
           <hr />
 
           <pre aria-label='pre'>
