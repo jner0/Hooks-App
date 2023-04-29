@@ -43,8 +43,20 @@ export const SimpleForm = () => {
         <h1>Formulario Simple</h1>
         <hr />
 
-        <input type="text" className="form-control" placeholder="Username" name="username" value={ username } onChange={onInputChange}/>
-        <input type="email" className="form-control mt-2" placeholder="nemecio@google.com" name="email" value={ email } onChange={ onInputChange }/>
+        <input 
+            type="text" className="form-control" 
+            placeholder="Username" 
+            name="username" 
+            value={ username } 
+            onChange={onInputChange}
+        />
+        <input 
+            type="email" 
+            className="form-control mt-2"
+            placeholder="nemecio@google.com" 
+            name="email" value={ email } 
+            onChange={ onInputChange }
+        />
 
         {
             (username === "ner02") && <Message/>
